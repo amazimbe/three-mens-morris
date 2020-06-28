@@ -1,3 +1,4 @@
+require 'byebug'
 describe ThreeMensMorris::Board do
   subject(:board) { ThreeMensMorris::Board.new(grid) }
 
@@ -42,6 +43,7 @@ describe ThreeMensMorris::Board do
     end
 
     it 'returns all diagonals on the board' do
+      #byebug
       expect(board.diagonals).to match_array result 
     end
   end
@@ -93,18 +95,6 @@ describe ThreeMensMorris::Board do
       it 'returns true' do
         expect(board.complete?).to be_nil
       end
-    end
-  end
-
-  describe '#moves' do
-    let(:grid) do
-      [['*','*','*'],
-       ['x','o','x'],
-       ['*','o','*']]
-    end
-
-    it 'returns all empty squares on the board' do
-      expect(board.empty_squares).to match_array %w[a1 a3 b1 c1 c3]
     end
   end
 

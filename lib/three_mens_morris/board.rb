@@ -12,16 +12,6 @@ module ThreeMensMorris
       grid[row][col] = piece
     end
 
-    def empty_squares
-      moves = []
-      rows.each_with_index do |row, i|
-        row.each_with_index do |cell, j|
-          moves << Board.index_to_square(i, j) if cell == '*'
-        end
-      end
-      moves
-    end
-
     def complete?
       rows.each do |row|
         return 'x' if row.all? { |cell| cell == 'x' }
@@ -47,27 +37,31 @@ module ThreeMensMorris
                   row.join('-').to_s
                 else
                   "\n|\\|/|\n#{row.join('-')}"
-                 end
+                end
       end
     end
 
     alias rows grid
 
     def diagonals
-      [
-        [grid[0][0], grid[1][1], grid[2][2]],
-        [grid[0][2], grid[1][1], grid[2][0]]
-      ]
+      grid_size = grid.length
+      main = (0...grid_size).map { |index| grid[index][index] }
+
+      k = grid_size - 1
+      other = (0...grid_size).map do |index|
+        val = grid[index][k]
+        k -= 1
+        val
+      end
+
+      [main, other]
     end
 
     def colums
-      cols = []
-
-      (0..2).each do |i|
-        cols << grid.map { |row| row[i] }
+      col_count = rows[0].length
+      (0...col_count).map do |i|
+        rows.inject([]) { |col, row| col << row[i] }
       end
-
-      cols
     end
 
     def self.square_to_index(square)

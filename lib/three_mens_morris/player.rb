@@ -27,21 +27,14 @@ module ThreeMensMorris
         row, col = Board.square_to_index(end_at)
         board.update(row, col, label)
       end
-      
+
       board
     end
 
     def get_move(board)
       $stdout.puts board
       $stdout.print "Your turn #{label} (format: #{move_format}) "
-      move = $stdin.gets
-
-      # until board.empty_squares.include?(move.chomp.downcase)
-      #   $stdout.print 'Invalid move. Try again. '
-      #   move = $stdin.gets
-      # end
-
-      move
+      $stdin.gets
     end
 
     def move_format
