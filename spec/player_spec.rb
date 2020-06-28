@@ -22,6 +22,7 @@ describe ThreeMensMorris::Player do
       
       player.move(board)
 
+      expect(player.pieces.length).to be 2
       expect(board.grid).to match_array new_grid
     end
 

@@ -103,8 +103,8 @@ describe ThreeMensMorris::Board do
        ['*','o','*']]
     end
 
-    it 'returns all valid moves' do
-      expect(board.moves).to match_array %w[a1 a3 b1 c1 c3]
+    it 'returns all empty squares on the board' do
+      expect(board.empty_squares).to match_array %w[a1 a3 b1 c1 c3]
     end
   end
 

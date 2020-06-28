@@ -12,7 +12,7 @@ module ThreeMensMorris
       grid[row][col] = piece
     end
 
-    def moves
+    def empty_squares
       moves = []
       rows.each_with_index do |row, i|
         row.each_with_index do |cell, j|
