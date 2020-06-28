@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'byebug'
+
 module ThreeMensMorris
   class Player
     attr_accessor :label, :pieces
@@ -33,7 +33,7 @@ module ThreeMensMorris
 
     def get_move(board)
       $stdout.puts board
-      $stdout.print "Your turn #{label} (format: a1) "
+      $stdout.print "Your turn #{label} (format: #{move_format}) "
       move = $stdin.gets
 
       until board.empty_squares.include?(move.chomp.downcase)
@@ -42,6 +42,10 @@ module ThreeMensMorris
       end
 
       move
+    end
+
+    def move_format
+      pieces.empty? ? 'a1>a2' : 'a1'
     end
   end
 end

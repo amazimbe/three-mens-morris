@@ -71,8 +71,8 @@ module ThreeMensMorris
     end
 
     def self.square_to_index(square)
-      col = square.gsub!(/([a-cA-C])/, '').to_i - 1
-      row = Regexp.last_match(1).downcase.ord - 'a'.ord
+      row = square.gsub!(/([a-cA-C])/, '').to_i - 1
+      col = Regexp.last_match(1).downcase.ord - 'a'.ord
       [row, col]
     end
 
