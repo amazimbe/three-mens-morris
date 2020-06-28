@@ -26,20 +26,28 @@ describe ThreeMensMorris::Player do
       expect(board.grid).to match_array new_grid
     end
 
-    context 'when player enters an invalid move' do
-      let(:first_prompt) do
-        "Your turn #{player.label} (format: a1) "
+    context 'when players have used up all 3 pieces' do
+      let(:grid) do
+        [['*','x','*'],
+         ['x','o','x'],
+         ['*','o','o']]
       end
 
-      let(:second_prompt) { 'Invalid move. Try again. '}
+      let(:new_grid) do
+        [['*','x','x'],
+         ['x','o','*'],
+         ['*','o','o']]
+      end
 
-      it 'prompts for another move' do
-        expect($stdout).to receive(:print).with(second_prompt)
-        expect($stdout).to receive(:print).with(first_prompt)
-        expect($stdin).to receive(:gets).and_return('a2', 'a1')
+      let(:prompt) { "Your turn #{player.label} (format: a1>a2) " }
+
+      it 'moves pieces correctly' do
+        expect(player).to receive(:pieces).twice.and_return([])
+        expect($stdout).to receive(:print).with(prompt)
+        expect($stdin).to receive(:gets).and_return('c2>c1')
 
         player.move(board)
-
+        
         expect(board.grid).to match_array new_grid
       end
     end

@@ -2,7 +2,7 @@
 
 module ThreeMensMorris
   class Player
-    attr_accessor :label, :pieces
+    attr_reader :label, :pieces
 
     def initialize(label, piece_count = 3)
       @label = label
@@ -36,10 +36,10 @@ module ThreeMensMorris
       $stdout.print "Your turn #{label} (format: #{move_format}) "
       move = $stdin.gets
 
-      until board.empty_squares.include?(move.chomp.downcase)
-        $stdout.print 'Invalid move. Try again. '
-        move = $stdin.gets
-      end
+      # until board.empty_squares.include?(move.chomp.downcase)
+      #   $stdout.print 'Invalid move. Try again. '
+      #   move = $stdin.gets
+      # end
 
       move
     end
