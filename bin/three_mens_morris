@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../lib/three_mens_morris'
+
+if __FILE__ == $PROGRAM_NAME
+  ThreeMensMorris::Game.new(
+    ThreeMensMorris::Player.new('x'),
+    ThreeMensMorris::Player.new('o'),
+    ThreeMensMorris::Board.new([%w[* * *], %w[* * *], %w[* * *]])
+  ).play
+end

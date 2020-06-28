@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - 'spec/**/*'
+    - 'vendor/**/*'
+  NewCops: enable
+Style/Documentation:
+  Enabled: false
